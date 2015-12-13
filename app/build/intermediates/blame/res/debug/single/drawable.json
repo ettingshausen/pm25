@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Android_Workspace\\pm251\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_next_selector.xml",
+        "source": "D:\\Android_Workspace\\pm251\\app\\src\\main\\res\\drawable\\btn_next_selector.xml"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm25\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_next_selector.xml",
+        "source": "D:\\Android_Workspace\\pm25\\app\\src\\main\\res\\drawable\\btn_next_selector.xml"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm25\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_print_selector.xml",
+        "source": "D:\\Android_Workspace\\pm25\\app\\src\\main\\res\\drawable\\btn_print_selector.xml"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm251\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\share_btn_selector.xml",
+        "source": "D:\\Android_Workspace\\pm251\\app\\src\\main\\res\\drawable\\share_btn_selector.xml"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm25\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\share_btn_selector.xml",
+        "source": "D:\\Android_Workspace\\pm25\\app\\src\\main\\res\\drawable\\share_btn_selector.xml"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm251\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_print_selector.xml",
+        "source": "D:\\Android_Workspace\\pm251\\app\\src\\main\\res\\drawable\\btn_print_selector.xml"
+    }
+]

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\Android_Workspace\pm25\app\src\main\assets"><file name="fonts/LCD.ttf" path="D:\Android_Workspace\pm25\app\src\main\assets\fonts\LCD.ttf"/></source></dataSet><dataSet config="debug"><source path="D:\Android_Workspace\pm25\app\src\debug\assets"/></dataSet></merger>

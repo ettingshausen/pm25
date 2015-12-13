@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\Android_Workspace\\pm251\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "D:\\Android_Workspace\\pm251\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm25\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\aqi_frame.png",
+        "source": "D:\\Android_Workspace\\pm25\\app\\src\\main\\res\\drawable-mdpi\\aqi_frame.png"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm251\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\aqi_frame.png",
+        "source": "D:\\Android_Workspace\\pm251\\app\\src\\main\\res\\drawable-mdpi\\aqi_frame.png"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm25\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "D:\\Android_Workspace\\pm25\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    }
+]

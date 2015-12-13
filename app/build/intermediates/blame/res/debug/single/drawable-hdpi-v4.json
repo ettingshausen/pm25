@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\Android_Workspace\\pm25\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\share_pressed.9.png",
+        "source": "D:\\Android_Workspace\\pm25\\app\\src\\main\\res\\drawable-hdpi\\share_pressed.9.png"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm251\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\Android_Workspace\\pm251\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm25\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\Android_Workspace\\pm25\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Android_Workspace\\pm251\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\share_pressed.9.png",
+        "source": "D:\\Android_Workspace\\pm251\\app\\src\\main\\res\\drawable-hdpi\\share_pressed.9.png"
+    }
+]
