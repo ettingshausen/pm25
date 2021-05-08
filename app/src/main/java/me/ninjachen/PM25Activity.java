@@ -114,11 +114,6 @@ public class PM25Activity extends Activity {
 		maps.put("严重污染", "所有人尽量避免户外活动");
 	}
 
-	private void checkAccessLocation() {
-		new PM25Geocoder(this).check();
-	}
-
-	@SuppressLint("NewApi")
 	private void disablePaperFeedback() {
 		mPaperTitle.setVisibility(View.VISIBLE);
 		mPaperAQIDesc.setVisibility(View.VISIBLE);
@@ -390,7 +385,6 @@ public class PM25Activity extends Activity {
 	public void onCreate(Bundle paramBundle) {
 		super.onCreate(paramBundle);
 		setContentView(R.layout.main);
-		checkAccessLocation();
 		mSetting = new PM25CitySetting(this);
 		initViewAndLayout();
 		initFontFace();
@@ -717,7 +711,7 @@ public class PM25Activity extends Activity {
 					.show();
 			return;
 		}
-		new PM25Geocoder(this)
+		new PM25Geocoder()
 				.requestLocalCityName(new PM25Geocoder.CityNameStatus() {
 					public void detecting() {
 						mCity.setText(R.string.txt_detecting);
