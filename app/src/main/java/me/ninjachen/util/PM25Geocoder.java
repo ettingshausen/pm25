@@ -67,13 +67,11 @@ public final class PM25Geocoder {
             Log.d(LogTag,
                     String.format("passive_last : > %s", lastKnownLocation));
         }
-        assert passive != null;
         if ((network != null) && (passive.getTime() <= network.getTime())) {
             this.lastKnownLocation = network;
             Log.d(LogTag,
                     String.format("network_last : > %s", lastKnownLocation));
         }
-        assert network != null;
         if ((gps != null) && (network.getTime() <= gps.getTime())) {
             this.lastKnownLocation = gps;
             Log.d(LogTag, String.format("gps_last : > %s", lastKnownLocation));
