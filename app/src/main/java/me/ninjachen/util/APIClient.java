@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public final class APIClient {
     private static final String LogTag = "pm25";
-    private static HttpClient mHttpClent = new DefaultHttpClient();
+    private static HttpClient mHttpClient = new DefaultHttpClient();
 
     //http post
     public String post(String uri, String param) {
@@ -28,7 +28,7 @@ public final class APIClient {
             ArrayList<BasicNameValuePair> list = new ArrayList<BasicNameValuePair>();
             list.add(new BasicNameValuePair("message", param));
             httpPost.setEntity(new UrlEncodedFormEntity(list, "UTF-8"));
-            HttpResponse httpResponse = mHttpClent.execute(httpPost);
+            HttpResponse httpResponse = mHttpClient.execute(httpPost);
             Log.d(LogTag, String.format("post StatusCode:%s", httpResponse
                     .getStatusLine().getStatusCode()));
             result = EntityUtils.toString(httpResponse.getEntity());
@@ -46,7 +46,7 @@ public final class APIClient {
                 String.format("request get uri:%s", param));
         HttpGet httpGet = new HttpGet(param);
         try {
-            HttpResponse httpResponse = mHttpClent.execute(httpGet);
+            HttpResponse httpResponse = mHttpClient.execute(httpGet);
             Log.d(LogTag, String.format("get StatusCode:%s", httpResponse
                     .getStatusLine().getStatusCode()));
             return EntityUtils.toString(httpResponse.getEntity());

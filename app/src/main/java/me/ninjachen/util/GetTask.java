@@ -9,8 +9,9 @@ public class GetTask extends AsyncTask<String, String, String> {
 		this.mTargetURI = uri;
 	}
 
-	protected String doInBackground(String[] strs) {
+	@Override
+	protected String doInBackground(String[] params) {
 		APIClient apiClient = new APIClient();
-		return apiClient.request(String.format(mTargetURI, strs[0]));
+		return apiClient.request(String.format(mTargetURI, params[0]));
 	}
 }

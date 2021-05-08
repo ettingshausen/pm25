@@ -55,12 +55,12 @@ public class PM25Activity extends Activity {
 	private static final String LogTag = "pm25";
 	private static Map<String, String> maps = new HashMap<String, String>();
 	private static float x;
-	private Boolean canPrint = Boolean.valueOf(false);
-	private Boolean canRip = Boolean.valueOf(false);
+	private Boolean canPrint = Boolean.FALSE;
+	private Boolean canRip = Boolean.FALSE;
 	private int cityIndex = 0;
-	private Boolean isCitySwitching = Boolean.valueOf(false);
-	private Boolean isFeedback = Boolean.valueOf(false);
-	private Boolean isFirst = Boolean.valueOf(true);
+	private Boolean isCitySwitching = Boolean.FALSE;
+	private Boolean isFeedback = Boolean.FALSE;
+	private Boolean isFirst = Boolean.TRUE;
 	private TextView mAQI;
 	private Animation mAlphaAnim = new AlphaAnimation(0.1F, 1.0F);
 	private ViewGroup mBodyLayout;
@@ -158,7 +158,7 @@ public class PM25Activity extends Activity {
 		mPaperFeedbackDesc.setVisibility(View.VISIBLE);
 	}
 
-	private void initFontface() {
+	private void initFontFace() {
 		Typeface typeface = Typeface.createFromAsset(getAssets(),
 				"fonts/LCD.ttf");
 		mCity.setTypeface(typeface);
@@ -240,7 +240,7 @@ public class PM25Activity extends Activity {
 		new File(getFilesDir(), "share.png").deleteOnExit();
 		try {
 			FileOutputStream localFileOutputStream = openFileOutput(
-					"share.png", 1);
+					"share.png", BIND_AUTO_CREATE);
 			this.mPaperLayout.setDrawingCacheEnabled(true);
 			this.mPaperLayout.getDrawingCache().compress(
 					Bitmap.CompressFormat.PNG, 100, localFileOutputStream);
@@ -334,7 +334,7 @@ public class PM25Activity extends Activity {
 	}
 
 	private void updateAQI_PM25(String city) {
-		if (NetworkUtils.getNetworkState(this) == NetworkUtils.NETWORN_NONE) {
+		if (NetworkUtils.getNetworkState(this) == NetworkUtils.NETWORK_NONE) {
 			Toast.makeText(this, R.string.net_wrok_error, Toast.LENGTH_SHORT)
 					.show();
 			return;
@@ -386,14 +386,14 @@ public class PM25Activity extends Activity {
 		return paramString + " ";
 	}
 
-	@SuppressLint("NewApi")
+	@Override
 	public void onCreate(Bundle paramBundle) {
 		super.onCreate(paramBundle);
 		setContentView(R.layout.main);
 		checkAccessLocation();
 		mSetting = new PM25CitySetting(this);
 		initViewAndLayout();
-		initFontface();
+		initFontFace();
 		initPlayer();
 		final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		mrl.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -553,7 +553,7 @@ public class PM25Activity extends Activity {
 				} else if (city.equalsIgnoreCase("auto")) {
 					mSetting.setCity("auto");
 					// mCity.setText(wrapFont(mSetting.getAutoCity()));
-					requesLocation();
+					requestLocation();
 				} else {
 					mSetting.setCity(city);
 					mAlphaAnim.cancel();
@@ -584,62 +584,61 @@ public class PM25Activity extends Activity {
 			public boolean onTouch(final View view, MotionEvent event) {
 				if (canRip.booleanValue()) {
 					mShare.setVisibility(View.GONE);
-					if (Build.VERSION.SDK_INT >= 11) {// 只有3.0以上的api才能使用。
-						if (event.getAction() == MotionEvent.ACTION_DOWN)
-							x = event.getX();
-						if (event.getAction() == MotionEvent.ACTION_MOVE) {
-							if (view.getRotation() > 0.0F)
-								view.setPivotX(view.getWidth());
-							if (view.getRotation() < 0.0F)
-								view.setPivotX(0.0F);
-							view.setPivotY(view.getHeight());
-							view.setRotation(view.getRotation()
-									+ (event.getX() - x) / 50.0F);
-						}
-						if (event.getAction() == MotionEvent.ACTION_UP) {
-							Object[] objects = new Object[1];
-							objects[0] = Float.valueOf(view.getRotation());
-							Log.d(LogTag,
-									String.format("getRotation : %s", objects));
-							Animator.AnimatorListener ripAnimal = new Animator.AnimatorListener() {
-								public void onAnimationCancel(
-										Animator paramAnonymous2Animator) {
-								}
-
-								public void onAnimationEnd(
-										Animator paramAnonymous2Animator) {
-									mBodyReset.start();
-									view.setTranslationY(0.0F);
-									view.setRotation(0.0F);
-									view.setAlpha(1.0F);
-									canRip = false;
-								}
-
-								public void onAnimationRepeat(
-										Animator paramAnonymous2Animator) {
-								}
-
-								public void onAnimationStart(
-										Animator paramAnonymous2Animator) {
-									mRipPlayer.start();
-								}
-							};
-							if (Math.abs(view.getRotation()) <= 3.0F)
-								view.setRotation(0.0F);
-							if (view.getRotation() > 3.0F) {
-								ViewPropertyAnimator.animate(view)
-										.setDuration(1000L).alpha(0.0F)
-										.rotation(90.0F).setListener(ripAnimal)
-										.start();
-							} else if (view.getRotation() < -3.0F) {
-								ViewPropertyAnimator.animate(view)
-										.setDuration(1000L).alpha(0.0F)
-										.rotation(-90.0F)
-										.setListener(ripAnimal).start();
-							} else {
-								if (!isFeedback.booleanValue())
-									mShare.setVisibility(View.VISIBLE);
+					// 只有3.0以上的api才能使用。
+					if (event.getAction() == MotionEvent.ACTION_DOWN)
+						x = event.getX();
+					if (event.getAction() == MotionEvent.ACTION_MOVE) {
+						if (view.getRotation() > 0.0F)
+							view.setPivotX(view.getWidth());
+						if (view.getRotation() < 0.0F)
+							view.setPivotX(0.0F);
+						view.setPivotY(view.getHeight());
+						view.setRotation(view.getRotation()
+								+ (event.getX() - x) / 50.0F);
+					}
+					if (event.getAction() == MotionEvent.ACTION_UP) {
+						Object[] objects = new Object[1];
+						objects[0] = Float.valueOf(view.getRotation());
+						Log.d(LogTag,
+								String.format("getRotation : %s", objects));
+						Animator.AnimatorListener ripAnimal = new Animator.AnimatorListener() {
+							public void onAnimationCancel(
+									Animator paramAnonymous2Animator) {
 							}
+
+							public void onAnimationEnd(
+									Animator paramAnonymous2Animator) {
+								mBodyReset.start();
+								view.setTranslationY(0.0F);
+								view.setRotation(0.0F);
+								view.setAlpha(1.0F);
+								canRip = false;
+							}
+
+							public void onAnimationRepeat(
+									Animator paramAnonymous2Animator) {
+							}
+
+							public void onAnimationStart(
+									Animator paramAnonymous2Animator) {
+								mRipPlayer.start();
+							}
+						};
+						if (Math.abs(view.getRotation()) <= 3.0F)
+							view.setRotation(0.0F);
+						if (view.getRotation() > 3.0F) {
+							ViewPropertyAnimator.animate(view)
+									.setDuration(1000L).alpha(0.0F)
+									.rotation(90.0F).setListener(ripAnimal)
+									.start();
+						} else if (view.getRotation() < -3.0F) {
+							ViewPropertyAnimator.animate(view)
+									.setDuration(1000L).alpha(0.0F)
+									.rotation(-90.0F)
+									.setListener(ripAnimal).start();
+						} else {
+							if (!isFeedback.booleanValue())
+								mShare.setVisibility(View.VISIBLE);
 						}
 					}
 				}
@@ -686,15 +685,12 @@ public class PM25Activity extends Activity {
 		});
 	}
 
-	public void onPause() {
-		super.onPause();
-	}
 
 	protected void onResume() {
 		super.onResume();
 		if (mSetting.getCity().equalsIgnoreCase("auto")) {// 如果需要自动定位
 			if (mSetting.getAutoCity().equals("")) {
-				requesLocation();
+				requestLocation();
 			} else {
 				String city = mSetting.getAutoCity();
 				mCity.setText(city);
@@ -715,8 +711,8 @@ public class PM25Activity extends Activity {
 	/**
 	 * 请求获取位置
 	 */
-	private void requesLocation() {/*Ninja makes a bug*/
-		if (NetworkUtils.getNetworkState(this) == NetworkUtils.NETWORN_NONE) {
+	private void requestLocation() {/*Ninja makes a bug*/
+		if (NetworkUtils.getNetworkState(this) == NetworkUtils.NETWORK_NONE) {
 			Toast.makeText(this, R.string.net_wrok_error, Toast.LENGTH_SHORT)
 					.show();
 			return;

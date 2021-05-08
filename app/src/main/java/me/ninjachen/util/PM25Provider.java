@@ -7,19 +7,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static me.ninjachen.API.PM25API;
+
 public class PM25Provider {
 	private static final String LogTag = "pm25";
 
 	public void request(final PM25Info pm25Listener, String param) {
-		GetTask task = new GetTask(
-				"http://www.pm25.in/api/querys/aqi_details.json?token=4esfG6UEhGzNkbszfjAp&city=%s&stations=yes") {
+		GetTask task = new GetTask(PM25API) {
 			protected void onPostExecute(String result) {
 				ArrayList<PM25> pm25List = null;
 				if (result != null && !result.contains("error")) {
 					Log.d(PM25Provider.LogTag, result);
 					try {
 						JSONArray localJSONArray = new JSONArray(result);
-						pm25List = new ArrayList<PM25>();
+						pm25List = new ArrayList<>();
 						for (int i = 0; i < localJSONArray.length(); i++) {
 							JSONObject localJSONObject = localJSONArray
 									.getJSONObject(i);
@@ -44,7 +45,7 @@ public class PM25Provider {
 				}
 			}
 		};
-		task.execute(new String[] { param.toLowerCase() });
+		task.execute(param.toLowerCase().replace("'", ""));
 	}
 
 	public static class PM25 {
@@ -59,7 +60,7 @@ public class PM25Provider {
 
 	}
 
-	public static abstract interface PM25Info {
-		public abstract void onInfo(List<PM25Provider.PM25> pm25List);
+	public interface PM25Info {
+		void onInfo(List<PM25Provider.PM25> pm25List);
 	}
 }
