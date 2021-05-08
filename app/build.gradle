@@ -7,7 +7,8 @@ android {
     defaultConfig {
         applicationId "me.ninjachen"
         minSdkVersion 13
-        targetSdkVersion 22
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 24
     }
 
     buildTypes {
@@ -23,6 +24,6 @@ android {
 }
 
 dependencies {
-    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
-    compile 'com.nineoldandroids:library:2.4.0'
+    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+    implementation 'com.nineoldandroids:library:2.4.0'
 }
