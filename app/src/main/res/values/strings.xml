@@ -23,7 +23,7 @@
     <string name="press_again_exit">再按一次退出...</string>
     <string name="net_wrok_error">网络不给力...</string>
     <string name="txt_divider">----------------------------------------</string>
-    <string name="txt_share_from_pm25in">www.javaapk.com 提供测试</string>
+    <string name="txt_share_from_pm25in"></string>
     <string name="txt_aqi_report">空气质量监测报告</string>
     <string name="txt_aqi_report_datetime">发布时间:----年--月--日 --:--</string>
 
